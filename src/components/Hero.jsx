@@ -6,7 +6,6 @@ function Hero() {
   const socialLinks = [
     { icon: <Github size={20} />, url: 'https://github.com/Agen7Z', label: 'GitHub' },
     { icon: <Linkedin size={20} />, url: 'https://www.linkedin.com/in/sangam-bakhunchhe-02484930a/', label: 'LinkedIn' },
-    
     { icon: <Mail size={20} />, url: 'mailto:info.azrael169@gmail.com', label: 'Email' }
   ];
 

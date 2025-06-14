@@ -17,13 +17,15 @@ import {
   Package,
   Code2,
   FileQuestion,
-  ArrowUp
+  ArrowUp,
+  Menu
 } from 'lucide-react';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import { motion } from 'framer-motion';
 
 const files = [
   {
@@ -153,6 +155,20 @@ function App() {
   const [openTabs, setOpenTabs] = useState(['hero']);
   const [expandedFolders, setExpandedFolders] = useState(['PORTFOLIO', 'src', 'components']);
   const [showGoToTop, setShowGoToTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setShowMobileMenu(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Handle scroll for Go to Top button
   useEffect(() => {
@@ -179,6 +195,7 @@ function App() {
       if (!openTabs.includes(section)) {
         setOpenTabs([...openTabs, section]);
       }
+      setShowMobileMenu(false);
     }
   };
 
@@ -236,6 +253,83 @@ function App() {
       default: return 'App.jsx';
     }
   };
+
+  const mobileNavItems = [
+    { name: 'Home', section: 'hero' },
+    { name: 'About', section: 'about' },
+    { name: 'Projects', section: 'projects' },
+    { name: 'Skills', section: 'skills' },
+    { name: 'Contact', section: 'contact' }
+  ];
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen bg-[#011627] text-[#d6deeb] font-mono">
+        {/* Mobile Navigation */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-[#01111b] border-b border-[#1e3a8a]">
+          <div className="flex items-center justify-between px-4 py-3">
+            <h1 className="text-xl font-bold text-[#7fdbca]">Portfolio</h1>
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="p-2 hover:bg-[#1d3b53] rounded"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+          
+          {/* Mobile Menu */}
+          {showMobileMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute top-full left-0 right-0 bg-[#01111b] border-b border-[#1e3a8a]"
+            >
+              {mobileNavItems.map((item) => (
+                <button
+                  key={item.section}
+                  onClick={() => scrollToSection(item.section)}
+                  className={`w-full px-4 py-3 text-left hover:bg-[#1d3b53] ${
+                    activeSection === item.section ? 'bg-[#1d3b53]' : ''
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </div>
+
+        {/* Main Content */}
+        <div className="pt-16">
+          <div id="hero" className="min-h-screen">
+            <Hero />
+          </div>
+          <div id="about" className="min-h-screen">
+            <About />
+          </div>
+          <div id="projects" className="min-h-screen">
+            <Projects />
+          </div>
+          <div id="skills" className="min-h-screen">
+            <Skills />
+          </div>
+          <div id="contact" className="min-h-screen">
+            <Contact />
+          </div>
+        </div>
+
+        {/* Go to Top Button */}
+        {showGoToTop && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 p-3 bg-[#7fdbca] text-[#011627] rounded-full shadow-lg hover:bg-[#82aaff] transition-colors z-40"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </button>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen bg-[#011627] text-[#d6deeb] font-mono flex flex-col overflow-hidden">

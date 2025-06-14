@@ -25,7 +25,7 @@ function Projects() {
       description: "A modern portfolio website built with React and Tailwind CSS. Features smooth animations and responsive design.",
       technologies: ["React", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/Agen7Z",
-      live: "https://your-portfolio.com",
+      live: "www.sangambakhunchhe.com.np",
       image: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop"
     }
   ];
