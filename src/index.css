@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #01111b;
+  border-left: 1px solid #1e3a8a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d3b53;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2d4b63;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1d3b53 #01111b;
+}
+
+
