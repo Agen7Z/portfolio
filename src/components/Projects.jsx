@@ -10,7 +10,7 @@ function Projects() {
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       github: "https://github.com/Agen7Z",
       live: "https://kinn.sangambakhunchhe.com.np/",
-      image: "/src/assets/kinn.png"
+      image: "/assets/kinn.png"
     },
     {
       title: "RENTPAL",
