@@ -5,6 +5,14 @@ import { Github, ExternalLink, Code2 } from 'lucide-react';
 function Projects() {
   const projects = [
     {
+      title: "KINN",
+      description: "A modern web application showcasing innovative design and functionality. Built with cutting-edge technologies for optimal user experience.",
+      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      github: "https://github.com/Agen7Z",
+      live: "https://kinn.sangambakhunchhe.com.np/",
+      image: "/src/assets/kinn.png"
+    },
+    {
       title: "RENTPAL",
       description: "A full-stack web application built with React and Node.js. Features include user authentication, real-time updates, and responsive design.",
       technologies: ["React", "Node.js", "MongoDB", "Socket.io"],
